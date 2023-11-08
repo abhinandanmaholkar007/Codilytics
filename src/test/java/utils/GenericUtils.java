@@ -17,7 +17,8 @@ public class GenericUtils {
 
         executor = (JavascriptExecutor) driver;
         executor.executeScript("arguments[0].click();", btn);
-    }}
+    }
+}
 
 
 

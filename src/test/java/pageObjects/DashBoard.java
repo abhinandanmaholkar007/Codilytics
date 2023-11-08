@@ -20,6 +20,9 @@ public class DashBoard {
     @FindBy(xpath = "//h4[text()='Codilytics']")
     WebElement codilyticsLabel;
 
+    @FindBy(xpath = "//h4[text()='Welcome to our Codilytics Portal']")
+    WebElement welcomeText;
+
     @FindBy(xpath = "//button[text()='Terms & Conditions']")
     WebElement termsBtn;
 
@@ -29,39 +32,63 @@ public class DashBoard {
     @FindBy(xpath = "//a[text()='Contact Admin']")
     WebElement contactAdmin;
 
+    @FindBy(xpath = "//button[text()='Sign In']")
+    WebElement signIn;
+
+
     /*
-    * checkCodilyticsFontFamily method extract the font family and check with expected font family
+     * checkCodilyticsFontFamily method extract the font family and check with expected font family
      */
 
-    public String checkCodilyticsFontFamily()
-    {
+    public String getCodilyticsText() {
+        return codilyticsLabel.getText();
+    }
+
+    public String checkWelcomeFontFamily() {
+        return welcomeText.getCssValue("font-family");
+    }
+
+    public String checkWelcomeLabelFontSize() {
+        return welcomeText.getCssValue("font-size");
+    }
+
+
+    public String checkWelcomeLabelColor() {
+        return welcomeText.getCssValue("color");
+    }
+
+    public String getWelcomeText() {
+        return welcomeText.getText();
+    }
+
+    public String checkCodilyticsFontFamily() {
         return codilyticsLabel.getCssValue("font-family");
     }
+
     public String checkCodilytictsLabelFontSize() {
-      return codilyticsLabel.getCssValue("font-size");
+        return codilyticsLabel.getCssValue("font-size");
     }
 
 
-    public String checkCodilyticsLabelColor()
-    {
+    public String checkCodilyticsLabelColor() {
         return codilyticsLabel.getCssValue("color");
     }
 
-    public void clickOnTerm()
-    {
+    public void clickOnTerm() {
         genericUtils.clickButton(termsBtn);
     }
 
-    public void clickOnPrivacy()
-    {
-      genericUtils.clickButton(privacyBtn);
+    public void clickOnPrivacy() {
+        genericUtils.clickButton(privacyBtn);
     }
 
-    public void contactAdminBtn()
-    {
+    public void contactAdminBtn() {
         genericUtils.clickButton(contactAdmin);
     }
 
+    public void signInClick() {
+        genericUtils.clickButton(signIn);
+    }
 
 
 }
