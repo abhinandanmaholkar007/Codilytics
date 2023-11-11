@@ -25,42 +25,51 @@ public class GenericUtils {
         executor = (JavascriptExecutor) driver;
         executor.executeScript("arguments[0].click();", btn);
     }
-    public void SwitchWindowToChild()
-    {
-        Set<String> s1=driver.getWindowHandles();
-        Iterator<String> i1 =s1.iterator();
+
+    public void SwitchWindowToChild() {
+        Set<String> s1 = driver.getWindowHandles();
+        Iterator<String> i1 = s1.iterator();
         String parentWindow = i1.next();
         String childWindow = i1.next();
         driver.switchTo().window(childWindow);
     }
-    public void SwitchtoParentWindow()
-    {
-        Set<String> s1=driver.getWindowHandles();
-        Iterator<String> i1 =s1.iterator();
+
+    public void SwitchtoParentWindow() {
+        Set<String> s1 = driver.getWindowHandles();
+        Iterator<String> i1 = s1.iterator();
         String parentWindow = i1.next();
         driver.switchTo().window(parentWindow);
     }
 
 
-    public void waitUntilElementVisibiltity(WebElement ele)
-    {
+    public void waitUntilElementVisibiltity(WebElement ele) {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
         wait.until(ExpectedConditions.visibilityOfElementLocated((By) ele));
     }
 
-    public void waitUntilElementClickable(WebElement ele)
-    {
+    public void login(WebElement dashboardTab) {
+        try {
+            Thread.sleep(3000);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+        // genericUtils.SwitchtoParentWindow();
+        waitUntilElementClickable(dashboardTab);
+    }
+
+    public void waitUntilElementClickable(WebElement ele) {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
         wait.until(ExpectedConditions.elementToBeClickable(ele));
     }
-    public String getEleColor(WebElement webElement){
+
+    public String getEleColor(WebElement webElement) {
         // Get the text color using JavaScript.
-        String textColor = ((JavascriptExecutor) driver).executeScript("return window.getComputedStyle(arguments[0]).color",webElement).toString();
+        String textColor = ((JavascriptExecutor) driver).executeScript("return window.getComputedStyle(arguments[0]).color", webElement).toString();
 
         return textColor;
     }
 
-    public String getEleFont(WebElement webElement){
+    public String getEleFont(WebElement webElement) {
 
         // Get the font using JavaScript.
         String actFont = ((JavascriptExecutor) driver).executeScript("return window.getComputedStyle(arguments[0]).font", webElement).toString();

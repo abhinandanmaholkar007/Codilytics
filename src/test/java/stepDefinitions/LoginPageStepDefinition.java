@@ -6,6 +6,7 @@ import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import pageObjects.Loginpage;
 import utils.TestContextSetUp;
+
 import static org.testng.Assert.assertEquals;
 
 public class LoginPageStepDefinition {
@@ -51,30 +52,25 @@ public class LoginPageStepDefinition {
     }
 
     @When("user login into the application with email as {string} and password as {string}")
-    public void user_login_into_the_application_with_email(String email,String password)
-    {
+    public void user_login_into_the_application_with_email(String email, String password) {
         loginpage.signInClick();
-        loginpage.doLogin(email,password);
+        loginpage.doLogin(email, password);
     }
+
     @Then("verify that user should be redirect to Dashboard page with url as {string}")
-    public void verify_that_user_should_be_redirect_to_Dashboard_page_with_url_as (String expDashUrl)
-    {
-        String actDashUrl=loginpage.verifySuccessfulLogin();
-        System.out.println(actDashUrl);
-        assertEquals(actDashUrl,expDashUrl);
+    public void verify_that_user_should_be_redirect_to_Dashboard_page_with_url_as(String expDashUrl) {
+        loginpage.verifyLogin(expDashUrl);
     }
 
     @When("user login into the application with invalid email as {string}")
-    public void user_login_into_the_application_with_invalid_email_as (String email)
-    {
-       loginpage.loginWithInvalidEmail(email);
+    public void user_login_into_the_application_with_invalid_email_as(String email) {
+        loginpage.loginWithInvalidEmail(email);
     }
 
     @Then("user should get error message as {string}")
-    public void user_should_get_error_message_as(String expErrorMsg)
-    {
-        String actErrorMsg=loginpage.loginErrorForInvalidEmail();
+    public void user_should_get_error_message_as(String expErrorMsg) {
+        String actErrorMsg = loginpage.loginErrorForInvalidEmail();
         System.out.println(actErrorMsg);
-        assertEquals(actErrorMsg,expErrorMsg);
+        assertEquals(actErrorMsg, expErrorMsg);
     }
 }
