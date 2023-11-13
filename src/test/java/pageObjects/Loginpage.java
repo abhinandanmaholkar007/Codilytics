@@ -140,8 +140,18 @@ public class Loginpage {
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }
-        // genericUtils.SwitchtoParentWindow();
+        genericUtils.SwitchtoParentWindow();
+        try {
+            Thread.sleep(3000);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
         genericUtils.waitUntilElementClickable(dashboardTab);
+        try {
+            Thread.sleep(3000);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
         String actDashUrl = driver.getCurrentUrl();
         assertEquals(actDashUrl, expDashUrl);
     }
