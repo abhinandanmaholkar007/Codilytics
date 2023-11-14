@@ -84,5 +84,5 @@ Feature: Verify the Dashboard functionality
     Then Verify the Financial Overview Revenue Expense and Profit Percentage per month
 
   @verifyFinancialOverviewRevenuePercentagePerYear
-  Scenario: Verify the Financial Overview Renvenue Percentage
+  Scenario: Verify the Financial Overview Revenue Percentage
     Then Verify the Financial Overview Revenue Expense and Profit Percentage per year

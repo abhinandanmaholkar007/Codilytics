@@ -48,6 +48,9 @@ public class DashBoardPage {
     @FindBy(xpath = "//button[contains(@class,'addChartsIconButton')]")
     WebElement customizeWidgetBtn;
 
+    @FindBy(xpath = "//div[contains(@class,'_customWidgetContainer')]")
+    List<WebElement> customWidgetContainer;
+
     public long currentYearRevenue;
     public long lastYearRevenue;
 
@@ -57,6 +60,12 @@ public class DashBoardPage {
 
     @FindBy(xpath = "//div[@id='drawerMainContainier']//div[@class='_operationContainer_11g3y_29 undefined']//*[name()='svg']")
     WebElement closeCustomizeWidget;
+
+    @FindBy(xpath = "//div[@class='_widgetWrapper_xym9g_42'])[1]/div")
+    List<WebElement> widgetWrapper;
+
+    @FindBy(xpath = "//p[text()='Financial Overview']")
+    WebElement financialRevenue;
 
     public long currentRevenue;
 
@@ -89,6 +98,9 @@ public class DashBoardPage {
 
     }
 
+    /*
+     * customizeWidgetBtn() check if widget is present enable it.
+     */
     public void customizeWidgetBtn() {
         try {
             Thread.sleep(3000);
@@ -105,8 +117,7 @@ public class DashBoardPage {
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }
-        List<WebElement> customizeWidgetOptionsList = driver
-                .findElements(By.xpath("//div[contains(@class,'_customWidgetContainer')]"));
+        List<WebElement> customizeWidgetOptionsList = customWidgetContainer;
         List<String> actualCustomizeWidget = new ArrayList<>();
         for (WebElement customizeWidget : customizeWidgetOptionsList) {
             JavascriptExecutor js = (JavascriptExecutor) driver;
@@ -199,9 +210,8 @@ public class DashBoardPage {
     public void verifyFinancialOverviewRevenuePercentagePerMonth() {
         String actualRevenuePercentage;
         driver.navigate().refresh();
-        List<WebElement> actualRevenuePercent = driver
-                .findElements(By.xpath("(//div[@class='_widgetWrapper_xym9g_42'])[1]/div"));
-        actualRevenuePercent.add(0, driver.findElement(By.xpath("//p[text()='Financial Overview']")));
+        List<WebElement> actualRevenuePercent = widgetWrapper;
+        actualRevenuePercent.add(0, financialRevenue);
         for (int i = 1; i < actualRevenuePercent.size(); i++) {
             String[] actualRevenuePercentageText = driver
                     .findElement(By.xpath("(//div[@class='_widgetWrapper_xym9g_42'])[1]/div[" + i + "]//span[@style]")).getText()
