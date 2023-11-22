@@ -15,6 +15,7 @@ Feature:Verify the Login functionality
       | "Coditas G-suite account" | "16px Roboto-Regular"     | "rgb(112, 112, 112)" |
 
 
+
   @verifyFooterLink
   Scenario: Verify footer link functionality
     Then verify that terms and condition link and Privacy policy should be displayed

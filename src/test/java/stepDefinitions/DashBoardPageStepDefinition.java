@@ -1,5 +1,6 @@
 package stepDefinitions;
 
+import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import pageObjects.DashBoardPage;
@@ -76,11 +77,11 @@ public class DashBoardPageStepDefinition {
     @When("user enable the toggle of {string}")
     public void user_enable_the_toggle_of_billability_metrics_by_level(String widgetToggleText) {
         dashBoardPage.enableCustomizeWidget(widgetToggleText);
-        try {
-            Thread.sleep(3000);
-        } catch (InterruptedException e) {
-            throw new RuntimeException(e);
-        }
+    }
+
+    @And("close the widget")
+    public void close_the_widget()
+    {
         dashBoardPage.closeCustomizeWidget();
     }
 
@@ -96,7 +97,7 @@ public class DashBoardPageStepDefinition {
     }
 
     @Then("Verify the Financial Overview Revenue Expense and Profit Percentage per month")
-    public void verify_the_financial_overview_renvenue_expense_and_profit_percentage_per_month() {
+    public void verify_the_financial_overview_revenue_expense_and_profit_percentage_per_month() {
         dashBoardPage.verifyFinancialOverviewRevenuePercentagePerMonth();
     }
 
@@ -104,4 +105,58 @@ public class DashBoardPageStepDefinition {
     public void verify_the_financial_overview_revenue_expense_and_profit_percentage_per_year() {
         dashBoardPage.verifyFinancialOverviewRevenuePercentagePerYear();
     }
-}
+
+    @Then("Verify the Company Expense CTC and Admin Percentage per month")
+    public void verify_the_company_expense_ctc_and_admin_percentage_per_month() {
+
+        dashBoardPage.verifyCompanyExpensePercentagePerMonth();
+    }
+
+    @Then("Verify the Company Expense CTC and Admin Percentage per year")
+    public void verify_the_company_expense_ctc_and_admin_percentage_per_year() {
+        dashBoardPage.verifyCompanyExpensePercentagePerYear();
+    }
+
+    @Then("Verify the Billability Metrics CTC and Admin Percentage per month")
+    public void verify_the_billabiltity_metrics_ctc_and_admin_percentage_per_month() {
+        dashBoardPage.verifyBillabilityMetricsPercentagePerMonth();
+    }
+
+    @Then("Verify the Billability Metrics CTC and Admin Percentage per year")
+    public void verify_the_billabiltity_metrics_ctc_and_admin_percentage_per_year() {
+        dashBoardPage.verifyBillabilityMetricsPercentagePerYear();
+    }
+
+    @Then("Verify the total client and internal active projects Percentage per month")
+    public void verify_the_total_client_and_internal_active_projects_percentage_per_month() {
+        dashBoardPage.verifyActiveProjectsPercentagePerMonth();
+    }
+
+    @Then("Verify the total on notice and new hire Employees Percentage per month")
+    public void verify_the_total_on_notice_and_new_hire_employees_percentage_per_month() {
+        dashBoardPage.verifyEmployeesPercentagePerMonth();
+    }
+
+
+    @Then("Verify the Total Bench, Usable Bench, Reserved, Trainee and upcoming bench Percentage per month")
+    public void verify_the_total_bench_usable_bench_reserved_trainee_and_upcoming_bench_percentage_per_month() {
+        dashBoardPage.verifyBenchPercentagePerMonth();
+    }
+
+
+//    @Then("Verify the {string} should display informative message")
+//    public void iverify_the_should_display_informative_message(String icon) {
+//        dashBoardPage.infoIconMsg(icon);
+//    }
+    @Then("Verify the {string} should display informative message")
+    public void verify_the_should_display_informative_message(String icon) {
+
+        dashBoardPage.infoIconMsg(icon);
+    }
+    @Then("calculate total revenue")
+    public void calculate_total_revenue() {
+        // Write code here that turns the phrase above into concrete actions
+        dashBoardPage.goToWidgetAndCalculateTotalrevenue();
+
+
+}}
